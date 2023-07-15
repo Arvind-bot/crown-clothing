@@ -1,0 +1,12 @@
+.no-matching-route {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 55vh;
+  }
+
+  &-message-container {
+    text-align: center;
+  }
+}
