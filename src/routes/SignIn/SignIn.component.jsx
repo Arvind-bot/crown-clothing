@@ -1,11 +1,19 @@
 import {
   signInWithGooglePopup,
+  createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
 const SignIn = () => {
   const logGoogleUser = async () => {
-    const resp = await signInWithGooglePopup();
-    console.log({ resp });
+    try {
+      const userAuth = await signInWithGooglePopup();
+      if(!userAuth?.error){
+        const { user } = userAuth || {};
+        const userDocRef = await createUserDocumentFromAuth(user);
+      }
+    } catch (error) {
+      console.error('error',error.message || 'Sorry, something went wrong.');
+    }
   };
 
   return (
